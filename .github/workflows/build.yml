@@ -397,7 +397,8 @@ jobs:
                       .setBufferSizeInBytes(data.size * 2)
                       .setTransferMode(AudioTrack.MODE_STATIC)
                       .build()
-                  t.write(data, 0, data.size)                  t.setLoopPoints(0, data.size, -1)
+                  t.write(data, 0, data.size)             
+                  t.setLoopPoints(0, data.size, -1)
                   t.play()
                   track = t
               }
@@ -956,7 +957,8 @@ jobs:
                   val pm = getSystemService(PowerManager::class.java)
                   val timeout = if (countdown) {
                       (presetMs - elapsed()).coerceAtLeast(1_000L) + 5_000L
-                  } else {                      6 * 60 * 60 * 1000L
+                  } else {                      
+                  6 * 60 * 60 * 1000L
                   }
                   wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "FloatingTimer:run").apply {
                       setReferenceCounted(false)
